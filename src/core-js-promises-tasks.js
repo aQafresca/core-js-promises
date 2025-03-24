@@ -19,7 +19,7 @@
  */
 function getPromise(number) {
   return new Promise((resolve, reject) => {
-    if (number > 0) {
+    if (number >= 0) {
       resolve(number);
     } else {
       reject(number);
@@ -82,13 +82,7 @@ function getFirstResolvedPromiseResult(promises) {
  * [promise3, promise4, promise6] => Promise rejected with 6
  */
 function getFirstPromiseResult(promises) {
-  return Promise.race(
-    promises.map((promis) =>
-      promis
-        .then((value) => Promise.resolve(value))
-        .catch((error) => Promise.reject(error))
-    )
-  );
+  return Promise.race(promises);
 }
 
 /**
